@@ -1,0 +1,24 @@
+.initialContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  .buttonsInitials {
+    display: flex;
+    width: 75%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.line {
+  height: 1px;
+  margin: 40px 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}

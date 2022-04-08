@@ -8,6 +8,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  p,
+  h1,
+  h2,
+  h3,
+  button,
+  a {
+    color: rgb(14, 14, 14);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 0.875rem;
+  }
 }
 
 html {
@@ -15,8 +26,12 @@ html {
 }
 
 body {
-  color: #fff;
-  background: #000;
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
 }
 
 button {
@@ -27,3 +42,9 @@ button {
 a {
   text-decoration: none;
 }
+
+.container {
+  padding: 30px 15px 0 15px;
+}
+
+

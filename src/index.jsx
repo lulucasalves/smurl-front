@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './styles/index.scss'
 import reportWebVitals from './reportWebVitals'
-import { Logo } from './components/Logo'
+import Home from './pages/home'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Logo />
+    <Home />
   </React.StrictMode>,
   document.getElementById('root')
 )

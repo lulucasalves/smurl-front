@@ -1,3 +1,7 @@
-export function Logo() {
-  return <h1>Hello World</h1>
+export function Logo(props) {
+  return (
+    <h2 {...props} className="logo">
+      smurl
+    </h2>
+  )
 }

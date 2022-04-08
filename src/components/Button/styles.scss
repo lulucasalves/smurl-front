@@ -1,0 +1,14 @@
+.button {
+  background: #1f86eb !important;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 5px;
+  background: none;
+  font-size: 1rem;
+  padding: 6px 11px;
+}
+
+.button[disabled] {
+  background: rgba(66, 147, 229, 0.8) !important;
+  cursor: default;
+}

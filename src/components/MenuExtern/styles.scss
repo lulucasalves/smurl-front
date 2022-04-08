@@ -1,0 +1,17 @@
+.menuContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px 10px 20px;
+  background: #1f86eb;
+  box-shadow: 0px -10px 11px 10px rgba(0, 0, 0, 0.4);
+
+  .logo {
+    color: #fff;
+  }
+
+  .buttonOutline {
+    color: #fff;
+    border-color: #fff;
+  }
+}
