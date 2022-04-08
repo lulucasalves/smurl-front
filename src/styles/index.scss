@@ -1,0 +1,29 @@
+@import url('./_components.scss');
+@import url('./themes/_dark.scss');
+@import url('./themes/_light.scss');
+@import url('./responsive/_desktop.scss');
+@import url('./responsive/_tablet.scss');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-style: sans-serif;
+}
+
+body {
+  color: #fff;
+  background: #000;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
