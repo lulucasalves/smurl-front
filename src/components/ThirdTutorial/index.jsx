@@ -1,4 +1,5 @@
 import { Button } from '../Button'
+import { AiOutlineCheckCircle } from 'react-icons/ai'
 
 export function ThirdTutorial() {
   return (
@@ -6,7 +7,7 @@ export function ThirdTutorial() {
       <Button style={{ fontSize: '0.875rem' }} disabled>
         Shorter
       </Button>
-      <img alt="link icon" className="linkIcon" src="./check.svg" />
+      <AiOutlineCheckCircle className="linkIcon" />
     </div>
   )
 }
