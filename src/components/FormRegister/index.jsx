@@ -1,24 +1,24 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { loginSchema } from '../../schemas/auth'
+import { registerSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
-export function FormAuth() {
+export function FormRegister() {
   const [loading, setLoading] = useState()
   const [errorMessage, setErrorMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
 
-  function login({ password, email }) {
-    alert(password + email)
+  function register({ password, email, confirmPassword }) {
+    alert(password + email + confirmPassword)
   }
 
   return (
     <div className="loginForm">
-      <p className="authTitle">Enter in the system</p>
+      <p className="authTitle">Create your account</p>
       <div className="titleForm">
-        <p>Continue with email:</p>
+        <p>Register with email:</p>
         {errorMessage && (
           <p className="error">
             <span>! </span> {errorMessage}
@@ -28,13 +28,14 @@ export function FormAuth() {
       <Formik
         initialValues={{
           email: '',
-          password: ''
+          password: '',
+          confirmPassword: ''
         }}
         validateOnChange={false}
         validateOnBlur={false}
-        validationSchema={loginSchema}
+        validationSchema={registerSchema}
         onSubmit={(values) => {
-          login(values)
+          register(values)
         }}
       >
         {({ handleChange, values, errors, handleSubmit }) => (
@@ -73,6 +74,21 @@ export function FormAuth() {
               {errors.password && (
                 <p className="error">
                   <span>! </span> {errors.password}
+                </p>
+              )}
+            </div>
+            <div className="inputGroup">
+              <AuthInput
+                required
+                onChange={handleChange('confirmPassword')}
+                name="confirmPassword"
+                type="password"
+                value={values.confirmPassword}
+                placeholder="Confirm your password"
+              />
+              {errors.confirmPassword && (
+                <p className="error">
+                  <span>! </span> {errors.confirmPassword}
                 </p>
               )}
             </div>

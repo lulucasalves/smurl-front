@@ -1,24 +1,24 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { loginSchema } from '../../schemas/auth'
+import { registerSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
-export function FormAuth() {
+export function FormReset() {
   const [loading, setLoading] = useState()
   const [errorMessage, setErrorMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
 
-  function login({ password, email }) {
-    alert(password + email)
+  function register({ password, email, confirmPassword }) {
+    alert(password + email + confirmPassword)
   }
 
   return (
     <div className="loginForm">
-      <p className="authTitle">Enter in the system</p>
+      <p className="authTitle">Reset your password</p>
       <div className="titleForm">
-        <p>Continue with email:</p>
+        <p>Create a new password:</p>
         {errorMessage && (
           <p className="error">
             <span>! </span> {errorMessage}
@@ -27,33 +27,18 @@ export function FormAuth() {
       </div>
       <Formik
         initialValues={{
-          email: '',
-          password: ''
+          password: '',
+          confirmPassword: ''
         }}
         validateOnChange={false}
         validateOnBlur={false}
-        validationSchema={loginSchema}
+        validationSchema={registerSchema}
         onSubmit={(values) => {
-          login(values)
+          register(values)
         }}
       >
         {({ handleChange, values, errors, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <div className="inputGroup">
-              <AuthInput
-                required
-                onChange={handleChange('email')}
-                name="email"
-                type="email"
-                value={values.email}
-                placeholder="Type your email"
-              />
-              {errors.email && (
-                <p className="error">
-                  <span>! </span> {errors.email}
-                </p>
-              )}
-            </div>
             <div className="inputGroup">
               <AuthInput
                 required
@@ -73,6 +58,21 @@ export function FormAuth() {
               {errors.password && (
                 <p className="error">
                   <span>! </span> {errors.password}
+                </p>
+              )}
+            </div>
+            <div className="inputGroup">
+              <AuthInput
+                required
+                onChange={handleChange('confirmPassword')}
+                name="confirmPassword"
+                type="password"
+                value={values.confirmPassword}
+                placeholder="Confirm your password"
+              />
+              {errors.confirmPassword && (
+                <p className="error">
+                  <span>! </span> {errors.confirmPassword}
                 </p>
               )}
             </div>

@@ -1,24 +1,22 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { loginSchema } from '../../schemas/auth'
+import { forgotPasswordSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
-import { BsEye, BsEyeSlash } from 'react-icons/bs'
 
-export function FormAuth() {
-  const [loading, setLoading] = useState()
+export function FormFP() {
+  const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const [hidePassword, setHidePassword] = useState(true)
 
-  function login({ password, email }) {
-    alert(password + email)
+  function send({ email }) {
+    alert(email)
   }
 
   return (
     <div className="loginForm">
-      <p className="authTitle">Enter in the system</p>
+      <p className="authTitle">Forgot your password?</p>
       <div className="titleForm">
-        <p>Continue with email:</p>
+        <p>We'll send a link to reset your password</p>
         {errorMessage && (
           <p className="error">
             <span>! </span> {errorMessage}
@@ -27,14 +25,13 @@ export function FormAuth() {
       </div>
       <Formik
         initialValues={{
-          email: '',
-          password: ''
+          email: ''
         }}
         validateOnChange={false}
         validateOnBlur={false}
-        validationSchema={loginSchema}
+        validationSchema={forgotPasswordSchema}
         onSubmit={(values) => {
-          login(values)
+          send(values)
         }}
       >
         {({ handleChange, values, errors, handleSubmit }) => (
@@ -54,28 +51,6 @@ export function FormAuth() {
                 </p>
               )}
             </div>
-            <div className="inputGroup">
-              <AuthInput
-                required
-                onChange={handleChange('password')}
-                name="password"
-                type={hidePassword ? 'password' : 'text'}
-                value={values.password}
-                placeholder="Type your password"
-                icon={
-                  hidePassword ? (
-                    <BsEyeSlash onClick={() => setHidePassword(false)} />
-                  ) : (
-                    <BsEye onClick={() => setHidePassword(true)} />
-                  )
-                }
-              />
-              {errors.password && (
-                <p className="error">
-                  <span>! </span> {errors.password}
-                </p>
-              )}
-            </div>
             <Button
               type="submit"
               style={{
@@ -85,7 +60,7 @@ export function FormAuth() {
                 marginTop: '30px'
               }}
             >
-              Continue
+              Reset your password
             </Button>
           </form>
         )}

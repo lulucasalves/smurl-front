@@ -1,0 +1,16 @@
+.registerLinks {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+
+  a {
+    color: #1f86eb;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

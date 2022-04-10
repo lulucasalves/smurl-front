@@ -1,4 +1,5 @@
 import { Button } from '../Button'
+import { Link } from 'react-router-dom'
 
 export function LastSession() {
   return (
@@ -9,7 +10,9 @@ export function LastSession() {
         urls, when you enter in the system you can create max 10 links included
         your account, enjoy this free site.
       </p>
-      <Button>Get Started for Free</Button>
+      <Link to="/signUp">
+        <Button>Get Started for Free</Button>
+      </Link>
     </div>
   )
 }

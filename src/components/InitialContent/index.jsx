@@ -2,6 +2,7 @@ import { ButtonOutline } from '../ButtonOutline'
 import { Button } from '../Button'
 import { PrincipalIllustration } from '../PrincipalIllustration'
 import { Title } from '../Title'
+import { Link } from 'react-router-dom'
 
 export function InitialContent() {
   return (
@@ -13,7 +14,9 @@ export function InitialContent() {
         and practical. Sign In or sign Up to use that free tools!
       </p>
       <div className="buttonsInitials">
-        <Button>Get Started</Button>
+        <Link to="/signUp">
+          <Button>Get Started</Button>
+        </Link>
         <ButtonOutline>See More</ButtonOutline>
       </div>
     </div>
