@@ -1,0 +1,16 @@
+.spinner {
+  width: 19px;
+  height: 19px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: #1f86eb;
+  border-right-color: #fff;
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(1turn);
+  }
+}

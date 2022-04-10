@@ -4,14 +4,24 @@ import { registerSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { REGISTER_USER } from '../../services/user'
+import { useMutation } from '@apollo/client'
+import { Loading } from '../Loading'
 
 export function FormRegister() {
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
+  const [createUser] = useMutation(REGISTER_USER)
 
-  function register({ password, email, confirmPassword }) {
-    alert(password + email + confirmPassword)
+  async function register({ password, email }) {
+    setLoading(true)
+
+    await createUser({ variables: { email, password } })
+      .then((res) => console.log(res.data.createUser.token))
+      .catch(() => setErrorMessage('Already have an account using this email'))
+
+    setLoading(false)
   }
 
   return (
@@ -93,6 +103,7 @@ export function FormRegister() {
               )}
             </div>
             <Button
+              onClick={() => setErrorMessage('')}
               type="submit"
               style={{
                 width: '100%',
@@ -101,7 +112,7 @@ export function FormRegister() {
                 marginTop: '30px'
               }}
             >
-              Continue
+              {loading ? <Loading /> : 'Continue'}
             </Button>
           </form>
         )}

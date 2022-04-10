@@ -6,10 +6,10 @@ export function FooterAuth() {
       <div className="line" style={{ margin: '20px 0' }} />
       <div className="optLinks">
         <Link to="/forgotPassword">
-          <a>Forgot password?</a>
+          <p>Forgot password?</p>
         </Link>
         <Link to="/signUp">
-          <a>Sign Up</a>
+          <p>Sign Up</p>
         </Link>
       </div>
     </>

@@ -1,14 +1,20 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './styles/index.scss'
 import reportWebVitals from './reportWebVitals'
 import { AppRoutes } from './routes'
+import { client } from './services/provider'
+import { ApolloProvider } from '@apollo/client'
+import { createRoot } from 'react-dom/client'
 
-ReactDOM.render(
+const rootElement = document.getElementById('root')
+const root = createRoot(rootElement)
+
+root.render(
   <React.StrictMode>
-    <AppRoutes />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <ApolloProvider client={client}>
+      <AppRoutes />
+    </ApolloProvider>
+  </React.StrictMode>
 )
 
 reportWebVitals()

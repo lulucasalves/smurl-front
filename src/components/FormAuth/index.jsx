@@ -4,14 +4,24 @@ import { loginSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { EMAIL_AUTH } from '../../services/auth'
+import { useMutation } from '@apollo/client'
+import { Loading } from '../Loading'
 
 export function FormAuth() {
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
+  const [login] = useMutation(EMAIL_AUTH)
 
-  function login({ password, email }) {
-    alert(password + email)
+  async function loginUser({ password, email }) {
+    setLoading(true)
+
+    await login({ variables: { email, password } })
+      .then((res) => console.log(res.data.login.token))
+      .catch(() => setErrorMessage('Incorrect email or password'))
+
+    setLoading(false)
   }
 
   return (
@@ -34,7 +44,7 @@ export function FormAuth() {
         validateOnBlur={false}
         validationSchema={loginSchema}
         onSubmit={(values) => {
-          login(values)
+          loginUser(values)
         }}
       >
         {({ handleChange, values, errors, handleSubmit }) => (
@@ -77,6 +87,7 @@ export function FormAuth() {
               )}
             </div>
             <Button
+              onClick={() => setErrorMessage('')}
               type="submit"
               style={{
                 width: '100%',
@@ -85,7 +96,7 @@ export function FormAuth() {
                 marginTop: '30px'
               }}
             >
-              Continue
+              {loading ? <Loading /> : 'Continue'}
             </Button>
           </form>
         )}

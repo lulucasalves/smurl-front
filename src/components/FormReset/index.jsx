@@ -4,10 +4,12 @@ import { registerSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
+import { Loading } from '../Loading'
 
 export function FormReset() {
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
 
   function register({ password, email, confirmPassword }) {
@@ -85,7 +87,7 @@ export function FormReset() {
                 marginTop: '30px'
               }}
             >
-              Continue
+              {loading ? <Loading /> : 'Continue'}
             </Button>
           </form>
         )}

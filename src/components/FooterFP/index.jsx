@@ -6,7 +6,7 @@ export function FooterFP() {
       <div className="line" style={{ margin: '20px 0' }} />
       <div className="registerLinks">
         <Link to="/signIn">
-          <a>Return to sign in page</a>
+          <p>Return to sign in page</p>
         </Link>
       </div>
     </>

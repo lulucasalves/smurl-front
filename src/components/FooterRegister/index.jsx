@@ -6,7 +6,7 @@ export function FooterRegister() {
       <div className="line" style={{ margin: '20px 0' }} />
       <div className="registerLinks">
         <Link to="/signIn">
-          <a>Sign In</a>
+          <p>Sign In</p>
         </Link>
       </div>
     </>

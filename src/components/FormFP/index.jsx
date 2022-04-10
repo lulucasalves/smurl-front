@@ -3,13 +3,26 @@ import { useState } from 'react'
 import { forgotPasswordSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
+import { FORGOT_PASSWORD } from '../../services/user'
+import { useMutation } from '@apollo/client'
+import { Loading } from '../Loading'
 
 export function FormFP() {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+  const [forgotPassword] = useMutation(FORGOT_PASSWORD)
 
-  function send({ email }) {
-    alert(email)
+  async function send({ email }) {
+    setLoading(true)
+
+    await forgotPassword({ variables: { email } }).then((res) => {
+      res.data.forgotPassword.error
+        ? setErrorMessage('This email is not registered')
+        : setSuccessMessage(`Email sended`)
+    })
+
+    setLoading(false)
   }
 
   return (
@@ -20,6 +33,12 @@ export function FormFP() {
         {errorMessage && (
           <p className="error">
             <span>! </span> {errorMessage}
+          </p>
+        )}
+
+        {successMessage && (
+          <p className="success">
+            <span>! </span> {successMessage}
           </p>
         )}
       </div>
@@ -52,6 +71,10 @@ export function FormFP() {
               )}
             </div>
             <Button
+              onClick={() => {
+                setErrorMessage('')
+                setSuccessMessage('')
+              }}
               type="submit"
               style={{
                 width: '100%',
@@ -60,7 +83,7 @@ export function FormFP() {
                 marginTop: '30px'
               }}
             >
-              Reset your password
+              {loading ? <Loading /> : 'Reset your password'}
             </Button>
           </form>
         )}
