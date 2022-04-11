@@ -1,19 +1,37 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { registerSchema } from '../../schemas/auth'
+import { resetSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
 import { Loading } from '../Loading'
+import { useSearchParams } from 'react-router-dom'
+import { RETURN_FORGOT_PASSWORD } from '../../services/user'
+import { useMutation } from '@apollo/client'
 
 export function FormReset() {
   const [loading, setLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-  const [successMessage, setSuccessMessage] = useState('')
+  const [message, setMessage] = useState({
+    error: '',
+    success: ''
+  })
+  const [returnForgotPassword] = useMutation(RETURN_FORGOT_PASSWORD)
   const [hidePassword, setHidePassword] = useState(true)
+  const [searchParams] = useSearchParams()
+  const token = searchParams.get('token')
 
-  function register({ password, email, confirmPassword }) {
-    alert(password + email + confirmPassword)
+  async function reset({ password }) {
+    setLoading(true)
+
+    await returnForgotPassword({
+      variables: { newPassword: password, token }
+    }).then((res) => {
+      res.data.returnForgotPassword.error
+        ? setMessage({ error: 'Invalid Params', success: '' })
+        : setMessage({ success: 'Your password has been reset', error: '' })
+    })
+
+    setLoading(false)
   }
 
   return (
@@ -21,9 +39,15 @@ export function FormReset() {
       <p className="authTitle">Reset your password</p>
       <div className="titleForm">
         <p>Create a new password:</p>
-        {errorMessage && (
+        {message.error && (
           <p className="error">
-            <span>! </span> {errorMessage}
+            <span>! </span> {message.error}
+          </p>
+        )}
+
+        {message.success && (
+          <p className="success">
+            <span>! </span> {message.success}
           </p>
         )}
       </div>
@@ -34,9 +58,9 @@ export function FormReset() {
         }}
         validateOnChange={false}
         validateOnBlur={false}
-        validationSchema={registerSchema}
+        validationSchema={resetSchema}
         onSubmit={(values) => {
-          register(values)
+          reset(values)
         }}
       >
         {({ handleChange, values, errors, handleSubmit }) => (
@@ -79,6 +103,9 @@ export function FormReset() {
               )}
             </div>
             <Button
+              onClick={() => {
+                setMessage({ error: '', success: '' })
+              }}
               type="submit"
               style={{
                 width: '100%',

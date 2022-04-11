@@ -6,7 +6,7 @@
   width: 100%;
 
   p {
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--text-muted);
     margin: 20px 0 10px 0;
     font-size: 1rem;
     text-align: center;
@@ -18,18 +18,24 @@
     display: flex;
     filter: brightness('1.2');
     border-radius: 5px;
-    background: #fff;
+    background: var(--background-brand);
     padding: 10px 0;
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.12);
     position: relative;
     justify-content: center;
+    transition: 0.3s;
+
+    &:hover {
+      filter: brightness(0.96);
+    }
 
     .facebook {
       color: #4267b2;
     }
 
     .github {
-      color: #333;
+      opacity: 0.7;
+      color: var(--text-color);
     }
 
     svg {
@@ -41,7 +47,7 @@
 
     p {
       margin: 0 0 0 15px;
-      color: rgba(0, 0, 0, 0.7);
+      color: var(--brand-text);
       font-weight: 500;
       font-size: 1rem;
     }

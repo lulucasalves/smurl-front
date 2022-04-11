@@ -5,15 +5,18 @@ import { AppRoutes } from './routes'
 import { client } from './services/provider'
 import { ApolloProvider } from '@apollo/client'
 import { createRoot } from 'react-dom/client'
+import { Provider } from './store/Config'
 
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement)
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <AppRoutes />
-    </ApolloProvider>
+    <Provider>
+      <ApolloProvider client={client}>
+        <AppRoutes />
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>
 )
 

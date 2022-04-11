@@ -9,8 +9,10 @@ import { Loading } from '../Loading'
 
 export function FormFP() {
   const [loading, setLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-  const [successMessage, setSuccessMessage] = useState('')
+  const [message, setMessage] = useState({
+    error: '',
+    success: ''
+  })
   const [forgotPassword] = useMutation(FORGOT_PASSWORD)
 
   async function send({ email }) {
@@ -18,8 +20,8 @@ export function FormFP() {
 
     await forgotPassword({ variables: { email } }).then((res) => {
       res.data.forgotPassword.error
-        ? setErrorMessage('This email is not registered')
-        : setSuccessMessage(`Email sended`)
+        ? setMessage({ error: 'This email is not registered', success: '' })
+        : setMessage({ success: 'Email sended', error: '' })
     })
 
     setLoading(false)
@@ -30,15 +32,15 @@ export function FormFP() {
       <p className="authTitle">Forgot your password?</p>
       <div className="titleForm">
         <p>We'll send a link to reset your password</p>
-        {errorMessage && (
+        {message.error && (
           <p className="error">
-            <span>! </span> {errorMessage}
+            <span>! </span> {message.error}
           </p>
         )}
 
-        {successMessage && (
+        {message.success && (
           <p className="success">
-            <span>! </span> {successMessage}
+            <span>! </span> {message.success}
           </p>
         )}
       </div>
@@ -72,8 +74,7 @@ export function FormFP() {
             </div>
             <Button
               onClick={() => {
-                setErrorMessage('')
-                setSuccessMessage('')
+                setMessage({ error: '', success: '' })
               }}
               type="submit"
               style={{

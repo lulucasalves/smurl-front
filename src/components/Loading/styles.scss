@@ -4,7 +4,7 @@
   margin: 0 auto;
   border-radius: 50%;
   border: 2px solid;
-  border-color: #1f86eb;
+  border-color: var(--primary);
   border-right-color: #fff;
   animation: spinner 1s infinite linear;
 }

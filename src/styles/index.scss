@@ -16,7 +16,7 @@
   button,
   label,
   a {
-    color: rgb(14, 14, 14);
+    color: var(--text-color);
     font-family: 'Ubuntu', sans-serif;
     font-size: 0.875rem;
   }

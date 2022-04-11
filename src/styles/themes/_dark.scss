@@ -3,5 +3,10 @@ html[data-color='dark'] {
   --text-color: #fff;
   --background: #111;
   --muted: #272727;
-  --border-color: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --primary-disabled: rgba(66, 147, 229, 0.5);
+  --input-border: rgba(255, 255, 255, 0.2);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --brand-text: rgba(255, 255, 255, 0.7);
+--background-brand: rgba(255, 255, 255, 0.02)
 }

@@ -5,14 +5,16 @@
 }
 
 .inputTutorial {
-  height: 25px;
+  height: 30px;
   padding-left: 10px;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: none;
+  border: 2px solid var(--border-color);
+  color: var(--text-muted);
 }
 
 .linkIcon {
   margin-left: 15px;
   font-size: 23px;
-  color: #1f86eb;
+  color: var(--primary);
 }

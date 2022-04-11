@@ -1,14 +1,19 @@
 .button {
-  background: #1f86eb !important;
+  background: var(--primary) !important;
   color: #fff;
   font-weight: 500;
   border-radius: 5px;
   background: none;
   font-size: 1rem;
   padding: 6px 11px;
+  transition: 0.3s;
+
+  &:hover {
+    filter: brightness(1.15);
+  }
 }
 
 .button[disabled] {
-  background: rgba(66, 147, 229, 0.5) !important;
+  background: var(--primary-disabled) !important;
   cursor: default;
 }

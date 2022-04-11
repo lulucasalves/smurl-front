@@ -1,4 +1,4 @@
-.menuContainer {
+.menuSystem {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,13 +10,7 @@
     color: #fff;
   }
 
-  .buttonOutline {
-    color: #fff;
-    border-color: #fff;
-
-    &:hover {
-      background-color: #fff;
-      color: var(--primary);
-    }
-  }
+ svg {
+   font-size: 26px;
+ }
 }

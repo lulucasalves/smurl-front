@@ -26,3 +26,16 @@ export const registerSchema = Yup.object().shape({
       : field
   )
 })
+
+export const resetSchema = Yup.object().shape({
+  password: Yup.string()
+    .required('Insert your password')
+    .min(6, 'Your password need min 6 characters'),
+  confirmPassword: Yup.string().when('password', (password, field) =>
+    password
+      ? field
+          .required('Confirm your password')
+          .oneOf([Yup.ref('password')], 'Incorrect password')
+      : field
+  )
+})
