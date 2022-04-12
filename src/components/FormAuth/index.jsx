@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { loginSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
@@ -7,8 +7,10 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs'
 import { EMAIL_AUTH } from '../../services/auth'
 import { useMutation } from '@apollo/client'
 import { Loading } from '../Loading'
+import { ContextProvider } from '../../store/Config'
 
 export function FormAuth() {
+  const { setToken, user } = useContext(ContextProvider)
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
@@ -18,11 +20,17 @@ export function FormAuth() {
     setLoading(true)
 
     await login({ variables: { email, password } })
-      .then((res) => console.log(res.data.login.token))
+      .then((res) => setToken(res.data.login.token))
       .catch(() => setErrorMessage('Incorrect email or password'))
 
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (user) {
+      window.location.pathname = '/system'
+    }
+  }, [user])
 
   return (
     <div className="loginForm">

@@ -3,7 +3,8 @@ import { createContext, useEffect, useState } from 'react'
 export const ContextProvider = createContext({})
 
 export function Provider(props) {
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState('light')
+  const [user, setUser] = useState(null)
 
   function changeTheme(type) {
     localStorage.setItem('theme', type)
@@ -23,8 +24,23 @@ export function Provider(props) {
     }
   }, [])
 
+  function setToken(token) {
+    localStorage.setItem('token', token)
+  }
+
+  function signOut() {
+    setUser(null)
+    localStorage.removeItem('token')
+  }
+
+  function currentUser(data) {
+    setUser(data)
+  }
+
   return (
-    <ContextProvider.Provider value={{ theme, changeTheme }}>
+    <ContextProvider.Provider
+      value={{ theme, changeTheme, signOut, user, setToken, currentUser }}
+    >
       {props.children}
     </ContextProvider.Provider>
   )

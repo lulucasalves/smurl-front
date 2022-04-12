@@ -4,11 +4,28 @@ import Login from '../pages/login'
 import Register from '../pages/register'
 import ForgotPassword from '../pages/forgotPassword'
 import ResetPassword from '../pages/resetPassword'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import System from '../pages/system'
+import { GET_USER } from '../services/user'
+import { useQuery } from '@apollo/client'
+import { ContextProvider } from '../store/Config'
 
 export function AppRoutes() {
-  const [authorized, setAuthorized] = useState(false)
+  const { data } = useQuery(GET_USER)
+  const { currentUser, user } = useContext(ContextProvider)
+
+  function signIn() {
+    const token = localStorage.getItem('token')
+
+    if (token && data) {
+      currentUser(data.getUser)
+    }
+  }
+
+
+  useEffect(() => {
+    signIn()
+  }, [data])
 
   return (
     <BrowserRouter>
@@ -17,7 +34,7 @@ export function AppRoutes() {
         <Route path="/signIn" element={<Login />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
-        <Route path="/system" element={<System />} />
+        {user && <Route path="/system" element={<System />} />}
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

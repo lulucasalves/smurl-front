@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { registerSchema } from '../../schemas/auth'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
@@ -7,18 +7,20 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs'
 import { REGISTER_USER } from '../../services/user'
 import { useMutation } from '@apollo/client'
 import { Loading } from '../Loading'
+import { ContextProvider } from '../../store/Config'
 
 export function FormRegister() {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
   const [createUser] = useMutation(REGISTER_USER)
+  const { signIn } = useContext(ContextProvider)
 
   async function register({ password, email }) {
     setLoading(true)
 
     await createUser({ variables: { email, password } })
-      .then((res) => console.log(res.data.createUser.token))
+      .then((res) => signIn(res.data.createUser.token))
       .catch(() => setErrorMessage('Already have an account using this email'))
 
     setLoading(false)

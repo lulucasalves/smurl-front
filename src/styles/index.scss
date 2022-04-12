@@ -15,6 +15,7 @@
   h3,
   button,
   label,
+  table,
   a {
     color: var(--text-color);
     font-family: 'Ubuntu', sans-serif;
@@ -45,5 +46,6 @@ a {
 }
 
 .container {
+  z-index: 5;
   padding: 30px 15px 0 15px;
 }

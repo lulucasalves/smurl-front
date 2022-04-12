@@ -39,3 +39,8 @@ export const resetSchema = Yup.object().shape({
       : field
   )
 })
+
+export const createRoute = Yup.object().shape({
+  link: Yup.string().required('Insert a web address'),
+  name: Yup.string().required('Insert a route name')
+})

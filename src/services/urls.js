@@ -5,7 +5,7 @@ export const GET_URLS = gql`
     getUrls {
       name
       link
-      created_at
+      id
     }
   }
 `
