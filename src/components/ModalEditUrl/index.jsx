@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client'
 import { EDIT_URL } from '../../services/urls'
 import { Label } from '../Label'
 import { AiOutlineClose } from 'react-icons/ai'
+import { RouteMask } from '../RouteMask'
 
 export function ModalEditUrl(props) {
   const [loading, setLoading] = useState(false)
@@ -85,7 +86,7 @@ export function ModalEditUrl(props) {
                   </div>
                   <div className="systemInput">
                     <Label>Route name</Label>
-                    <AuthInput
+                    <RouteMask
                       required
                       onChange={handleChange('name')}
                       name="name"

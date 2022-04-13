@@ -1,6 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { BiTrashAlt, BiEdit } from 'react-icons/bi'
+import { MdContentCopy } from 'react-icons/md'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { GET_URLS } from '../../services/urls'
 
 export function UrlTable(props) {
@@ -42,27 +44,40 @@ export function UrlTable(props) {
           return (
             <>
               {urls.length ? (
-                <tbody key={id}>
+                <tbody>
                   <tr>
                     <td data-label="Link">
-                      <a title={link} href={link} target="_blank">
-                        {link.length > 22 ? `${link.substr(0, 22)}...` : link}
+                      <a
+                        key={name}
+                        title={link}
+                        href={link}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        {link.length > 22 ? `${link.substr(0, 26)}...` : link}
                       </a>
                     </td>
                     <td data-label="Route">
-                      <a target="_blank" href={`https://${name}`}>
+                      <a
+                        key={name}
+                        title={name}
+                        rel="noreferrer"
+                        target="_blank"
+                        href={`https://${name}`}
+                      >
                         {name}
                       </a>
                     </td>
                     <td data-label="Edit" className="iconsGroupTable">
+                      <CopyToClipboard text={`https://${name}`}>
+                        <MdContentCopy />
+                      </CopyToClipboard>
                       <BiEdit onClick={() => edit(id)} />
                       <BiTrashAlt onClick={() => deleteRoute(id)} />
                     </td>
                   </tr>
                 </tbody>
-              ) : (
-                <p className="nodata">No data</p>
-              )}
+              ) : null}
             </>
           )
         })}

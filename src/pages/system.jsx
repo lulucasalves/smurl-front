@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FormSystem } from '../components/FormSystem'
 import { MenuIntern } from '../components/MenuIntern'
 import { ModalDeleteConfirm } from '../components/ModalDeleteConfirm'
@@ -11,27 +11,38 @@ export default function System() {
   const [urlId, seUrlId] = useState('')
   const [modal, setModal] = useState(false)
   const [deleteModal, setDeleteModal] = useState(false)
+  const token = localStorage.getItem('token')
+
+  useEffect(() => {
+    if (!user && !token) {
+      window.location.href = '/'
+    }
+  }, [user, token])
 
   return (
     <>
-      <ModalEditUrl urlId={urlId} state={modal} setState={setModal} />
-      <ModalDeleteConfirm
-        urlId={urlId}
-        state={deleteModal}
-        setState={setDeleteModal}
-      />
+      {user && token && (
+        <>
+          <ModalEditUrl urlId={urlId} state={modal} setState={setModal} />
+          <ModalDeleteConfirm
+            urlId={urlId}
+            state={deleteModal}
+            setState={setDeleteModal}
+          />
 
-      <MenuIntern user={user} />
-      <div className="container">
-        <FormSystem />
-        <div className="line" />
-        <UrlTable
-          setDeleteModal={setDeleteModal}
-          setUrlId={seUrlId}
-          user={user}
-          setModal={setModal}
-        />
-      </div>
+          <MenuIntern user={user} />
+          <div className="container containerIntern">
+            <FormSystem />
+            <div className="line" />
+            <UrlTable
+              setDeleteModal={setDeleteModal}
+              setUrlId={seUrlId}
+              user={user}
+              setModal={setModal}
+            />
+          </div>
+        </>
+      )}
     </>
   )
 }

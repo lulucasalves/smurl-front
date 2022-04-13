@@ -159,78 +159,83 @@ export function ModalMenu(props) {
             )}
           </Formik>
 
-          <div className="changePassword">
-            <Formik
-              initialValues={{
-                oldPassword: '',
-                newPassword: ''
-              }}
-              validateOnChange={false}
-              validateOnBlur={false}
-              validationSchema={changePasswordSchema}
-              onSubmit={(values) => {
-                changeUserPassword(values)
-              }}
-            >
-              {({ handleChange, values, errors, handleSubmit }) => (
-                <form onSubmit={handleSubmit} className="menuForm">
-                  <p>Change your password</p>
-                  <div className="systemInput">
-                    <Label>Password</Label>
-                    <AuthInput
-                      required
-                      onChange={handleChange('oldPassword')}
-                      name="oldPassword"
-                      type="password"
-                      value={values.oldPassword}
-                      placeholder="Type your current password"
-                    />
-                    {errors.oldPassword && (
-                      <p className="error">
-                        <span>! </span> {errors.oldPassword}
-                      </p>
-                    )}
-                  </div>
-                  <div className="systemInput">
-                    <Label>New Password</Label>
-                    <AuthInput
-                      required
-                      onChange={handleChange('newPassword')}
-                      name="newPassword"
-                      type={hidePassword ? 'password' : 'text'}
-                      value={values.newPassword}
-                      placeholder="Type your new password"
-                      icon={
-                        hidePassword ? (
-                          <BsEyeSlash onClick={() => setHidePassword(false)} />
-                        ) : (
-                          <BsEye onClick={() => setHidePassword(true)} />
-                        )
-                      }
-                    />
-                    {errors.newPassword && (
-                      <p className="error">
-                        <span>! </span> {errors.newPassword}
-                      </p>
-                    )}
-                  </div>
-                  <ButtonOutline
-                    type="submit"
-                    style={{
-                      color: '#fff',
-                      borderColor: '#fff',
-                      width: '100%',
-                      padding: '10px',
-                      borderRadius: '3px',
-                      marginTop: '20px'
-                    }}
-                  >
-                    {loading ? <Loading /> : 'Change password'}
-                  </ButtonOutline>
-                </form>
-              )}
-            </Formik>
-          </div>
+          {user.password && (
+            <div className="changePassword">
+              <Formik
+                initialValues={{
+                  oldPassword: '',
+                  newPassword: ''
+                }}
+                validateOnChange={false}
+                validateOnBlur={false}
+                validationSchema={changePasswordSchema}
+                onSubmit={(values) => {
+                  changeUserPassword(values)
+                }}
+              >
+                {({ handleChange, values, errors, handleSubmit }) => (
+                  <form onSubmit={handleSubmit} className="menuForm">
+                    <p>Change your password</p>
+                    <div className="systemInput">
+                      <Label>Password</Label>
+                      <AuthInput
+                        required
+                        onChange={handleChange('oldPassword')}
+                        name="oldPassword"
+                        type="password"
+                        value={values.oldPassword}
+                        placeholder="Type your current password"
+                      />
+                      {errors.oldPassword && (
+                        <p className="error">
+                          <span>! </span> {errors.oldPassword}
+                        </p>
+                      )}
+                    </div>
+                    <div className="systemInput">
+                      <Label>New Password</Label>
+                      <AuthInput
+                        required
+                        onChange={handleChange('newPassword')}
+                        name="newPassword"
+                        type={hidePassword ? 'password' : 'text'}
+                        value={values.newPassword}
+                        placeholder="Type your new password"
+                        icon={
+                          hidePassword ? (
+                            <BsEyeSlash
+                              onClick={() => setHidePassword(false)}
+                            />
+                          ) : (
+                            <BsEye onClick={() => setHidePassword(true)} />
+                          )
+                        }
+                      />
+                      {errors.newPassword && (
+                        <p className="error">
+                          <span>! </span> {errors.newPassword}
+                        </p>
+                      )}
+                    </div>
+                    <ButtonOutline
+                      type="submit"
+                      style={{
+                        color: '#fff',
+                        borderColor: '#fff',
+                        width: '100%',
+                        padding: '10px',
+                        borderRadius: '3px',
+                        marginTop: '20px'
+                      }}
+                    >
+                      {loading ? <Loading /> : 'Change password'}
+                    </ButtonOutline>
+                  </form>
+                )}
+              </Formik>
+            </div>
+          )}
+
           <div className="menuLine" />
           <div className="signOutButton">
             <ButtonOutline

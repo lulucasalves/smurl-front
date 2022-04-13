@@ -8,6 +8,7 @@ export const GET_USER = gql`
       confirmed
       number_urls
       created_at
+      password
     }
   }
 `

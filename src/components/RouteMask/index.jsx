@@ -4,7 +4,7 @@ export function RouteMask(props) {
   return (
     <div className="inputGroup">
       <MaskedInput
-        maxLength={22}
+        maxLength={26}
         guide={false}
         mask={[
           'smurl.ml/l/',
