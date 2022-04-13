@@ -9,19 +9,18 @@ import System from '../pages/system'
 import { GET_USER } from '../services/user'
 import { useQuery } from '@apollo/client'
 import { ContextProvider } from '../store/Config'
+import Redirect from '../pages/redirect'
 
 export function AppRoutes() {
   const { data } = useQuery(GET_USER)
   const { currentUser, user } = useContext(ContextProvider)
+  const token = localStorage.getItem('token')
 
   function signIn() {
-    const token = localStorage.getItem('token')
-
     if (token && data) {
       currentUser(data.getUser)
     }
   }
-
 
   useEffect(() => {
     signIn()
@@ -34,7 +33,8 @@ export function AppRoutes() {
         <Route path="/signIn" element={<Login />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
-        {user && <Route path="/system" element={<System />} />}
+        <Route path="/l/:name" element={<Redirect />} />
+        {user && token && <Route path="/system" element={<System />} />}
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

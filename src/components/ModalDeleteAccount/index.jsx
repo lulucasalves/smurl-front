@@ -1,31 +1,30 @@
 import { Button } from '../Button'
 import { ButtonOutline } from '../ButtonOutline'
 import { useMutation } from '@apollo/client'
-import { DELETE_URL } from '../../services/urls'
 import { AiOutlineClose } from 'react-icons/ai'
+import { DELETE_USER } from '../../services/user'
 import { useState } from 'react'
 import { Loading } from '../Loading'
 
-export function ModalDeleteConfirm(props) {
-  const [deleteUrl] = useMutation(DELETE_URL)
+export function ModalDeleteAccount(props) {
+  const [deleteUser] = useMutation(DELETE_USER)
   const [loading, setLoading] = useState(false)
 
-  async function deleteRoute() {
+  async function deleteAccount() {
     if (!loading) {
       setLoading(true)
-      await deleteUrl({
-        variables: { id: props.urlId }
-      })
+
+      await deleteUser()
         .then(() => {
-          window.location.reload()
+          window.location.href = '/'
         })
-        .finally(() => setLoading(false))
+        .finally(() => setLoading(true))
     }
   }
 
   return (
     <>
-      {props.urlId && props.state ? (
+      {props.state ? (
         <div className="modalSystem">
           <div className="loginForm modalBody deleteModal">
             <AiOutlineClose
@@ -33,12 +32,12 @@ export function ModalDeleteConfirm(props) {
               className="exit"
             />
             <div className="titleForm" style={{ marginTop: '0' }}>
-              <p>Delete this route</p>
+              <p>Delete your account</p>
             </div>
-            <ButtonOutline onClick={() => deleteRoute()}>
+            <ButtonOutline onClick={() => deleteAccount()}>
               {loading ? <Loading /> : 'Delete'}
             </ButtonOutline>
-            <Button onClick={() => props.setState(false)}>Return</Button>
+            <Button onClick={() => props.setState(false)}>Return </Button>
           </div>
         </div>
       ) : null}

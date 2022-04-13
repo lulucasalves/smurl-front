@@ -6,9 +6,10 @@ export function Provider(props) {
   const [theme, setTheme] = useState('light')
   const [user, setUser] = useState(null)
 
-  function changeTheme(type) {
-    localStorage.setItem('theme', type)
-    setTheme(type)
+  function changeTheme() {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    localStorage.setItem('theme', newTheme)
+    setTheme(newTheme)
   }
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export function Provider(props) {
   function signOut() {
     setUser(null)
     localStorage.removeItem('token')
+    window.location.href = '/'
   }
 
   function currentUser(data) {

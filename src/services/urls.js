@@ -10,6 +10,14 @@ export const GET_URLS = gql`
   }
 `
 
+export const GET_URL = gql`
+  query ($name: String!) {
+    getUrl(name: $name) {
+      link
+    }
+  }
+`
+
 export const CREATE_URL = gql`
   mutation ($name: String!, $link: String!) {
     createUrl(name: $name, link: $link) {

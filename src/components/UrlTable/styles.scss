@@ -31,7 +31,7 @@
   td {
     a {
       color: var(--primary);
-      filter: brightness(0.7);
+      filter: brightness(0.8);
       text-decoration: underline;
       cursor: pointer;
     }
@@ -115,4 +115,13 @@
 
 .nodata {
   color: red;
+}
+
+
+.redirect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }

@@ -21,6 +21,7 @@
     "react-outclick": "^0.0.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "react-text-mask": "^5.4.3",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

@@ -17,7 +17,9 @@ export function InitialContent() {
         <Link to="/signUp">
           <Button>Get Started</Button>
         </Link>
-        <ButtonOutline>See More</ButtonOutline>
+        <a href="#tutorial">
+          <ButtonOutline>See More</ButtonOutline>
+        </a>
       </div>
     </div>
   )

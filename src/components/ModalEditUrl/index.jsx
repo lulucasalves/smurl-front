@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { createRoute } from '../../schemas/auth'
+import { createRouteSchema } from '../../schemas/user-url'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { Loading } from '../Loading'
@@ -18,17 +18,22 @@ export function ModalEditUrl(props) {
   const [editUrl] = useMutation(EDIT_URL)
 
   async function create({ link, name }) {
-    setLoading(true)
+    if (!loading) {
+      setLoading(true)
 
-    await editUrl({
-      variables: { link, name, id: props.urlId }
-    }).then((res) => {
-      res.data.editUrl.error
-        ? setMessage({ error: 'This route name already exists', success: '' })
-        : window.location.reload()
-    })
-
-    setLoading(false)
+      await editUrl({
+        variables: { link, name, id: props.urlId }
+      })
+        .then((res) => {
+          res.data.editUrl.error
+            ? setMessage({
+                error: 'This route name already exists',
+                success: ''
+              })
+            : window.location.reload()
+        })
+        .finally(() => setLoading(false))
+    }
   }
 
   return (
@@ -55,7 +60,7 @@ export function ModalEditUrl(props) {
               }}
               validateOnChange={false}
               validateOnBlur={false}
-              validationSchema={createRoute}
+              validationSchema={createRouteSchema}
               onSubmit={(values) => {
                 create(values)
               }}

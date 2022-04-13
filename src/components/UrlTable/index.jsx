@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { BiTrashAlt, BiEdit } from 'react-icons/bi'
 import { GET_URLS } from '../../services/urls'
-import { ModalEditUrl } from '../ModalEditUrl'
 
 export function UrlTable(props) {
   const [urls, setUrls] = useState([])
@@ -46,12 +45,12 @@ export function UrlTable(props) {
                 <tbody key={id}>
                   <tr>
                     <td data-label="Link">
-                      <a href={link} target="_blank">
-                        {link}
+                      <a title={link} href={link} target="_blank">
+                        {link.length > 22 ? `${link.substr(0, 22)}...` : link}
                       </a>
                     </td>
                     <td data-label="Route">
-                      <a target="_blank" href={name}>
+                      <a target="_blank" href={`https://${name}`}>
                         {name}
                       </a>
                     </td>

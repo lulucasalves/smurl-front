@@ -1,12 +1,13 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { createRoute } from '../../schemas/auth'
+import { createRouteSchema } from '../../schemas/user-url'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { Loading } from '../Loading'
 import { useMutation } from '@apollo/client'
 import { CREATE_URL } from '../../services/urls'
 import { Label } from '../Label'
+import { RouteMask } from '../RouteMask'
 
 export function FormSystem() {
   const [loading, setLoading] = useState(false)
@@ -17,17 +18,19 @@ export function FormSystem() {
   const [createUrl] = useMutation(CREATE_URL)
 
   async function create({ link, name }) {
-    setLoading(true)
+    if (!loading) {
+      setLoading(true)
 
-    await createUrl({
-      variables: { link, name }
-    }).then((res) => {
-      res.data.createUrl.error
-        ? setMessage({ error: res.data.createUrl.message, success: '' })
-        : window.location.reload()
-    })
-
-    setLoading(false)
+      await createUrl({
+        variables: { link, name }
+      })
+        .then((res) => {
+          res.data.createUrl.error
+            ? setMessage({ error: res.data.createUrl.message, success: '' })
+            : window.location.reload()
+        })
+        .finally(() => setLoading(false))
+    }
   }
 
   return (
@@ -53,7 +56,7 @@ export function FormSystem() {
         }}
         validateOnChange={false}
         validateOnBlur={false}
-        validationSchema={createRoute}
+        validationSchema={createRouteSchema}
         onSubmit={(values) => {
           create(values)
         }}
@@ -78,7 +81,7 @@ export function FormSystem() {
             </div>
             <div className="systemInput">
               <Label>Route name</Label>
-              <AuthInput
+              <RouteMask
                 required
                 onChange={handleChange('name')}
                 name="name"

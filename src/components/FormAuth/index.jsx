@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import { useContext, useEffect, useState } from 'react'
-import { loginSchema } from '../../schemas/auth'
+import { loginSchema } from '../../schemas/user-url'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
@@ -17,13 +17,17 @@ export function FormAuth() {
   const [login] = useMutation(EMAIL_AUTH)
 
   async function loginUser({ password, email }) {
-    setLoading(true)
+    if (!loading) {
+      setLoading(true)
 
-    await login({ variables: { email, password } })
-      .then((res) => setToken(res.data.login.token))
-      .catch(() => setErrorMessage('Incorrect email or password'))
-
-    setLoading(false)
+      await login({ variables: { email, password } })
+        .then((res) => {
+          setToken(res.data.login.token)
+          window.location.href = '/system'
+        })
+        .catch(() => setErrorMessage('Incorrect email or password'))
+        .finally(() => setLoading(false))
+    }
   }
 
   useEffect(() => {

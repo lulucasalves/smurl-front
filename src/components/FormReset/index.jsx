@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { resetSchema } from '../../schemas/auth'
+import { resetSchema } from '../../schemas/user-url'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
@@ -21,17 +21,19 @@ export function FormReset() {
   const token = searchParams.get('token')
 
   async function reset({ password }) {
-    setLoading(true)
+    if (!loading) {
+      setLoading(true)
 
-    await returnForgotPassword({
-      variables: { newPassword: password, token }
-    }).then((res) => {
-      res.data.returnForgotPassword.error
-        ? setMessage({ error: 'Invalid Params', success: '' })
-        : setMessage({ success: 'Your password has been reset', error: '' })
-    })
-
-    setLoading(false)
+      await returnForgotPassword({
+        variables: { newPassword: password, token }
+      })
+        .then((res) => {
+          res.data.returnForgotPassword.error
+            ? setMessage({ error: 'Invalid Params', success: '' })
+            : setMessage({ success: 'Your password has been reset', error: '' })
+        })
+        .finally(() => setLoading(false))
+    }
   }
 
   return (

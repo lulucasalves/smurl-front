@@ -40,7 +40,21 @@ export const resetSchema = Yup.object().shape({
   )
 })
 
-export const createRoute = Yup.object().shape({
+export const createRouteSchema = Yup.object().shape({
   link: Yup.string().required('Insert a web address'),
   name: Yup.string().required('Insert a route name')
+})
+
+export const editUserSchema = Yup.object().shape({
+  email: Yup.string()
+    .required('Insert an email address')
+    .email('Invalid email'),
+  phone: Yup.string().required('Insert your phone number')
+})
+
+export const changePasswordSchema = Yup.object().shape({
+  oldPassword: Yup.string().required('Insert your password'),
+  newPassword: Yup.string()
+    .required('Insert your new password')
+    .min(6, 'Your password need min 6 characters')
 })

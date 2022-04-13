@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import { useState } from 'react'
-import { forgotPasswordSchema } from '../../schemas/auth'
+import { forgotPasswordSchema } from '../../schemas/user-url'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { FORGOT_PASSWORD } from '../../services/user'
@@ -16,15 +16,17 @@ export function FormFP() {
   const [forgotPassword] = useMutation(FORGOT_PASSWORD)
 
   async function send({ email }) {
-    setLoading(true)
+    if (!loading) {
+      setLoading(true)
 
-    await forgotPassword({ variables: { email } }).then((res) => {
-      res.data.forgotPassword.error
-        ? setMessage({ error: 'This email is not registered', success: '' })
-        : setMessage({ success: 'Email sended', error: '' })
-    })
-
-    setLoading(false)
+      await forgotPassword({ variables: { email } })
+        .then((res) => {
+          res.data.forgotPassword.error
+            ? setMessage({ error: 'This email is not registered', success: '' })
+            : setMessage({ success: 'Email sended', error: '' })
+        })
+        .finally(() => setLoading(false))
+    }
   }
 
   return (

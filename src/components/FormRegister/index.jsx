@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import { useContext, useState } from 'react'
-import { registerSchema } from '../../schemas/auth'
+import { registerSchema } from '../../schemas/user-url'
 import { AuthInput } from '../AuthInput'
 import { Button } from '../Button'
 import { BsEye, BsEyeSlash } from 'react-icons/bs'
@@ -14,16 +14,22 @@ export function FormRegister() {
   const [errorMessage, setErrorMessage] = useState('')
   const [hidePassword, setHidePassword] = useState(true)
   const [createUser] = useMutation(REGISTER_USER)
-  const { signIn } = useContext(ContextProvider)
+  const { setToken } = useContext(ContextProvider)
 
   async function register({ password, email }) {
-    setLoading(true)
+    if (!loading) {
+      setLoading(true)
 
-    await createUser({ variables: { email, password } })
-      .then((res) => signIn(res.data.createUser.token))
-      .catch(() => setErrorMessage('Already have an account using this email'))
-
-    setLoading(false)
+      await createUser({ variables: { email, password } })
+        .then((res) => {
+          setToken(res.data.createUser.token)
+          window.location.href = '/system'
+        })
+        .catch(() =>
+          setErrorMessage('Already have an account using this email')
+        )
+        .finally(() => setLoading(false))
+    }
   }
 
   return (
