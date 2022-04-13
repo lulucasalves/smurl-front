@@ -1,13 +1,13 @@
 .tableTitle {
   text-align: center;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 400;
   margin-bottom: 30px;
 }
 
 .numberRoutes {
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-bottom: 5px;
 }
 
@@ -39,11 +39,11 @@
 
   .iconsGroupTable {
     svg {
-      font-size: 22px;
+      font-size: 1.375rem;
       cursor: pointer;
       color: red;
       &:first-child {
-        font-size: 22px;
+        font-size: 1.375rem;
         margin-right: 20px;
         color: var(--primary);
       }
@@ -75,11 +75,11 @@
       margin-top: 25px;
 
       svg {
-        font-size: 22px;
+        font-size: 1.375rem;
         cursor: pointer;
         color: red;
         &:first-child {
-          font-size: 22px;
+          font-size: 1.375rem;
           margin-right: 20px;
           color: var(--primary);
         }
@@ -116,7 +116,6 @@
 .nodata {
   color: red;
 }
-
 
 .redirect {
   display: flex;
