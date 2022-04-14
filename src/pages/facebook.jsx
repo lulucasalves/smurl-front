@@ -22,7 +22,7 @@ export default function Facebook() {
     if (code) {
       facebookAuth()
     }
-  }, [])
+  }, [code])
 
   return <></>
 }

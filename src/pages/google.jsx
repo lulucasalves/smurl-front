@@ -9,8 +9,6 @@ export default function Google() {
   const code = searchParams.get('code')
   const { setToken } = useContext(ContextProvider)
 
-
-  
   const [googleLogin] = useMutation(GOOGLE_AUTH)
 
   async function googleAuth() {
@@ -24,7 +22,7 @@ export default function Google() {
     if (code) {
       googleAuth()
     }
-  }, [])
+  }, [code])
 
   return <></>
 }
