@@ -16,9 +16,9 @@ export function ModalDeleteAccount(props) {
 
       await deleteUser()
         .then(() => {
-          window.location.hrModalef = '/'
+          window.location.href = '/'
         })
-        .finally(() => setLoading(true))
+        .finally(() => setLoading(false))
     }
   }
 
@@ -37,7 +37,7 @@ export function ModalDeleteAccount(props) {
             <ButtonOutline onClick={() => deleteAccount()}>
               {loading ? <Loading /> : 'Delete'}
             </ButtonOutline>
-            <Button onClick={() => props.setState(false)}>Return </Button>
+            <Button onClick={() => props.setState(false)}>Return</Button>
           </div>
         </div>
       ) : null}

@@ -13,12 +13,8 @@ export default function Google() {
 
   async function googleAuth() {
     await googleLogin({ variables: { code } }).then((res) => {
-      if (res.data.googleLogin.token) {
         setToken(res.data.googleLogin.token)
         window.location.href = '/system'
-      } else {
-        window.location.href = '/'
-      }
     })
   }
 

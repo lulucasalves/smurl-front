@@ -13,12 +13,8 @@ export default function Facebook() {
 
   async function facebookAuth() {
     await facebookLogin({ variables: { code } }).then((res) => {
-      if (res.data.facebookLogin.token) {
-        setToken(res.data.facebookLogin.token)
-        window.location.href = '/system'
-      } else {
-        window.location.href = '/'
-      }
+      setToken(res.data.facebookLogin.token)
+      window.location.href = '/system'
     })
   }
 
