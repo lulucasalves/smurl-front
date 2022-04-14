@@ -3,7 +3,7 @@ import { FormFP } from '../components/FormFP'
 import { Logo } from '../components/Logo'
 
 export default function ForgotPassword() {
-  document.title = 'About Page'
+  document.title = 'Smurl | Forgot Password'
 
   return (
     <div className="container" style={{ padding: '20px 30px 0 30px' }}>

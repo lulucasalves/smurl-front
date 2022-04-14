@@ -14,6 +14,8 @@ export default function System() {
   const [deleteModal, setDeleteModal] = useState(false)
   const token = localStorage.getItem('token')
 
+  document.title = 'Smurl | System'
+
   useEffect(() => {
     if (!user && !token) {
       window.location.href = '/'

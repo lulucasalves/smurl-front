@@ -9,12 +9,14 @@ export default function Google() {
   const code = searchParams.get('code')
   const { setToken } = useContext(ContextProvider)
 
+
+  
   const [googleLogin] = useMutation(GOOGLE_AUTH)
 
   async function googleAuth() {
     await googleLogin({ variables: { code } }).then((res) => {
-        setToken(res.data.googleLogin.token)
-        window.location.href = '/system'
+      setToken(res.data.googleLogin.token)
+      window.location.href = '/system'
     })
   }
 
@@ -22,7 +24,7 @@ export default function Google() {
     if (code) {
       googleAuth()
     }
-  }, [code])
+  }, [])
 
   return <></>
 }
