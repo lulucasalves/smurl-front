@@ -16,7 +16,7 @@ export function ModalDeleteAccount(props) {
 
       await deleteUser()
         .then(() => {
-          window.location.href = '/'
+          window.location.hrModalef = '/'
         })
         .finally(() => setLoading(true))
     }
@@ -25,7 +25,7 @@ export function ModalDeleteAccount(props) {
   return (
     <>
       {props.state ? (
-        <div className="modalSystem">
+        <div className="modalSystem lateralDelete">
           <div className="loginForm modalBody deleteModal">
             <AiOutlineClose
               onClick={() => props.setState(false)}

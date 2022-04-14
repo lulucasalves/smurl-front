@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { FormSystem } from '../components/FormSystem'
+import { LateralMenu } from '../components/LateralMenu'
 import { MenuIntern } from '../components/MenuIntern'
 import { ModalDeleteConfirm } from '../components/ModalDeleteConfirm'
 import { ModalEditUrl } from '../components/ModalEditUrl'
@@ -29,6 +30,8 @@ export default function System() {
             state={deleteModal}
             setState={setDeleteModal}
           />
+
+          {window.innerWidth > 1080 ? <LateralMenu /> : null}
 
           <MenuIntern user={user} />
           <div className="container containerIntern">

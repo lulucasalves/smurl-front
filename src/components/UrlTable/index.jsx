@@ -37,7 +37,9 @@ export function UrlTable(props) {
           <tr>
             <th scope="col">Link</th>
             <th scope="col">Route</th>
-            <th scope="col">Edit</th>
+            <th scope="col" className="editGroupForm">
+              Edit
+            </th>
           </tr>
         </thead>
         {urls.map(({ link, name, id }) => {
@@ -68,7 +70,10 @@ export function UrlTable(props) {
                         {name}
                       </a>
                     </td>
-                    <td data-label="Edit" className="iconsGroupTable">
+                    <td
+                      data-label="Edit"
+                      className="iconsGroupTable editGroupForm"
+                    >
                       <CopyToClipboard text={`https://${name}`}>
                         <MdContentCopy />
                       </CopyToClipboard>

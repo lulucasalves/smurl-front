@@ -67,7 +67,7 @@ export function ModalMenu(props) {
             className="exit"
           />
 
-          {theme === 'dark' ? (
+          {theme !== 'dark' ? (
             <MdDarkMode
               onClick={() => {
                 changeTheme()
@@ -249,7 +249,7 @@ export function ModalMenu(props) {
                 borderRadius: '3px'
               }}
             >
-              {loading ? <Loading /> : 'Sign Out'}
+              Sign Out
             </ButtonOutline>
 
             <p onClick={() => setModal(true)}>Delete my account</p>

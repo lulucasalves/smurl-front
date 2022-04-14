@@ -34,9 +34,9 @@ export function FormSystem() {
   }
 
   return (
-    <div className="loginForm">
+    <div className="loginForm systemForm">
       <div className="titleForm systemTitle">
-        <p>Create a new route:</p>
+        <p>Create a new route</p>
         {message.error && (
           <p className="error">
             <span>! </span> {message.error}

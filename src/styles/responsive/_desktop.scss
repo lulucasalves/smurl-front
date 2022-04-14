@@ -1,5 +1,147 @@
 html {
   @media (min-width: 1080px) {
     font-size: 115%;
+
+    .initialContent {
+      flex-direction: row-reverse;
+
+      .illustrationPrincipal {
+        width: 90% !important;
+      }
+    }
+
+    .initialDescription {
+      margin-right: 50px;
+      text-align: center;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 50px;
+      }
+    }
+
+    .container {
+      padding: 50px 100px 0 100px !important;
+    }
+
+    .buttonsInitials {
+      button {
+        font-size: 1.2rem !important;
+      }
+    }
+
+    .tutorialDiv {
+      .titleTutorial {
+        font-size: 1.6rem;
+      }
+
+      input {
+        font-size: 0.9rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 1rem !important;
+      }
+    }
+
+    .dUrl {
+      width: 20% !important;
+    }
+
+    .lastSessionDiv {
+      align-items: center;
+      flex-direction: row;
+
+      div {
+        margin-left: 100px;
+        p {
+          max-width: 600px;
+          font-size: 1.1rem !important;
+        }
+      }
+    }
+
+    .containerIntern {
+      padding: 50px 50px 0 50px !important;
+      margin: 0 !important;
+      max-width: 72% !important;
+    }
+
+    .systemForm {
+      margin: 0 auto;
+      margin-top: 50px;
+      max-width: 700px !important;
+    }
+
+    .urlTable {
+      th,
+      td {
+        padding: 10px 30px;
+        text-align: left;
+      }
+
+      th {
+        font-weight: 500;
+
+        &:last-child {
+          text-align: center;
+        }
+      }
+
+      td {
+        &:last-child {
+          text-align: center;
+        }
+      }
+    }
+
+    .menuSystem {
+      padding: 10px 50px;
+      svg {
+        display: none;
+      }
+    }
+
+    .menuContainer {
+      padding: 15px 50px 10px 50px;
+    }
+
+    .modalMenu {
+      display: none !important;
+    }
+
+    .lateralMenu {
+      display: flex !important;
+    }
+
+    .modalSystem {
+      .modalBody {
+        margin: 0 auto;
+        max-width: 500px !important;
+      }
+    }
+
+    .urlTable {
+      margin-bottom: 50px;
+    }
+
+    .editGroupForm {
+      width: 28%;
+    }
+
+    .modalBody {
+      padding: 40px !important;
+    }
   }
 }

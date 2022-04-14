@@ -8,7 +8,9 @@ export function MenuIntern() {
 
   return (
     <>
-      <ModalMenu state={state} setState={setState} />
+      {window.innerWidth < 1200 ? (
+        <ModalMenu state={state} setState={setState} />
+      ) : null}
       <div className="menuSystem">
         <Logo link="/" />
         <RiMenu5Line onClick={() => setState(true)} />

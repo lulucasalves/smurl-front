@@ -19,4 +19,20 @@
       color: var(--primary);
     }
   }
+
+  .signUpMenu {
+    background: #fff !important;
+    color: var(--primary);
+    font-weight: 500;
+    border-radius: 5px;
+    background: none;
+    font-size: 1rem;
+    padding: 6px 11px;
+    transition: 0.3s;
+    margin-left: 30px;
+  }
+
+  .signInMenu {
+    visibility: hidden;
+  }
 }
