@@ -12,7 +12,7 @@ export function InitialContent() {
         <Title>Make your links more short, pretty and practical</Title>
         <p>
           Use our url shortener tools and make your links more reliable, pretty
-          and practical. Sign In or sign Up to use our free tools!
+          and practical. Sign In or Sign Up to use our free tools!
         </p>
         <div className="buttonsInitials">
           <Link to="/signUp">

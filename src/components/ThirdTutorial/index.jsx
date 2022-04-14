@@ -5,7 +5,7 @@ export function ThirdTutorial() {
   return (
     <div className="firstTutorial">
       <Button style={{ fontSize: '0.875rem' }} disabled>
-        Shorter
+        Shorten
       </Button>
       <AiOutlineCheckCircle className="linkIcon" />
     </div>

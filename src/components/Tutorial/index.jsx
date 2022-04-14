@@ -15,7 +15,7 @@ export function Tutorial() {
       <SecondTutorial />
       <div className="tutorialSep" />
       <p className="tutorialDescription">
-        Click in button "Shorter" and generate your url.
+        Click in button "Shorten" and generate your url.
       </p>
       <ThirdTutorial />
     </div>
