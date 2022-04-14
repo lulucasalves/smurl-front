@@ -6,32 +6,35 @@ html {
       flex-direction: row-reverse;
 
       .illustrationPrincipal {
-        width: 80% !important;
+        width: 100% !important;
       }
     }
 
     .initialDescription {
-      margin-right: 50px;
-      text-align: center;
       flex-direction: column;
       display: flex;
-      align-items: center;
+      align-items: flex-start !important;
 
       h1 {
-        font-size: 1.6rem;
+        width: 75%;
+        text-align: left;
+        font-size: 2.2rem;
       }
 
       p {
-        font-size: 1rem;
+        width: 75%;
+        text-align: left;
+        font-size: 1.2rem;
         margin-bottom: 50px;
       }
     }
 
     .container {
-      padding: 50px 100px 0 100px !important;
+      padding: 50px 70px 0 70px !important;
     }
 
     .buttonsInitials {
+      width: 60% !important;
       button {
         font-size: 1.2rem !important;
       }

@@ -1,7 +1,35 @@
+@keyframes initialAnimation {
+  from {
+    margin-left: -200px;
+    margin-right: 200px;
+    opacity: 0;
+  }
+
+  to {
+    margin: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes illustrationAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .initialContent {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .illustrationPrincipal {
+    animation-name: illustrationAnimation;
+    animation-duration: 0.8s;
+  }
 
   p {
     margin-bottom: 25px;
@@ -20,6 +48,8 @@
     flex-direction: column;
     display: flex;
     align-items: center;
+    animation-name: initialAnimation;
+    animation-duration: 0.9s;
   }
 }
 

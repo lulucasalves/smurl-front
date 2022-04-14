@@ -56,7 +56,7 @@ export function UrlTable(props) {
                         rel="noreferrer"
                         target="_blank"
                       >
-                        {link.length > 22 ? `${link.substr(0, 26)}...` : link}
+                        {link.length > 18 ? `${link.substr(0, 17)}...` : link}
                       </a>
                     </td>
                     <td data-label="Route">

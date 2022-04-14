@@ -9,7 +9,7 @@ export function InitialContent() {
     <div className="initialContent">
       <PrincipalIllustration />
       <div className="initialDescription" >
-        <Title>Make your links shorter</Title>
+        <Title>Make your links more short, pretty and practical</Title>
         <p>
           Use our url shortener tools and make your links more reliable, pretty
           and practical. Sign In or sign Up to use that free tools!

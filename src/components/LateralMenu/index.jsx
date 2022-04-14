@@ -46,8 +46,8 @@ export function LateralMenu() {
           </p>
 
           <p className="number" title={user.phone}>
-            {user.phone.length > 29
-              ? `${user.email.substr(0, 28)}...`
+            {user.phone.length > 19
+              ? `${user.phone.substr(0, 18)}...`
               : user.phone}
           </p>
 
