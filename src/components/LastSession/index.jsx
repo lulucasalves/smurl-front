@@ -8,8 +8,8 @@ export function LastSession() {
       <div>
         <p>
           This site has the objective of helping everybody that needs stylize
-          some urls, when you enter in the system you can create max 10 links
-          included your account, enjoy this free site.
+          some urls, when you enter in the system you can create max 10 links in
+          your account, enjoy this free site.
         </p>
         <Link to="/signUp">
           <Button>Get Started for Free</Button>

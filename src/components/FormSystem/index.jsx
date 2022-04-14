@@ -107,7 +107,7 @@ export function FormSystem() {
                 marginTop: '20px'
               }}
             >
-              {loading ? <Loading /> : 'Create'}
+              {loading ? <Loading /> : 'Shorten'}
             </Button>
           </form>
         )}
